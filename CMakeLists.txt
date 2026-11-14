@@ -53,8 +53,6 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/Sophus
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 )
-include_directories(/opt/homebrew/include)
-link_directories(/opt/homebrew/lib)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
@@ -188,14 +186,6 @@ add_executable(stereo_euroc
         Examples/Stereo/stereo_euroc.cc)
 target_link_libraries(stereo_euroc ${PROJECT_NAME})
 
-add_executable(stereo_euroc_pangolin
-        Examples/Stereo/stereo_euroc_pangolin_main_thread.cc)
-target_link_libraries(stereo_euroc_pangolin ${PROJECT_NAME})
-
-add_executable(stereo_quest3
-        Examples/Stereo/stereo_quest3.cc)
-target_link_libraries(stereo_quest3 ${PROJECT_NAME})
-
 add_executable(stereo_tum_vi
         Examples/Stereo/stereo_tum_vi.cc)
 target_link_libraries(stereo_tum_vi ${PROJECT_NAME})
@@ -224,14 +214,6 @@ target_link_libraries(mono_quest3 ${PROJECT_NAME})
 add_executable(mono_tum
         Examples/Monocular/mono_tum.cc)
 target_link_libraries(mono_tum ${PROJECT_NAME})
-
-add_executable(mono_s20fe
-        Examples/Monocular/mono_s20fe.cc)
-target_link_libraries(mono_s20fe ${PROJECT_NAME})
-
-add_executable(mono_euroc_pangolin
-        Examples/Monocular/mono_euroc_pangolin_main_thread.cc)
-target_link_libraries(mono_euroc_pangolin ${PROJECT_NAME})
 
 add_executable(mono_kitti
         Examples/Monocular/mono_kitti.cc)
