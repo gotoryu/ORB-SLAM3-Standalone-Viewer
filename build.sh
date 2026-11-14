@@ -4,8 +4,8 @@ cd Thirdparty/DBoW2
 rm -rf build
 mkdir build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-make -j
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+make -j$(nproc)
 
 cd ../../g2o
 
@@ -14,8 +14,8 @@ echo "Configuring and building Thirdparty/g2o ..."
 rm -rf build
 mkdir build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-make -j
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+make -j$(nproc)
 
 cd ../../Sophus
 
@@ -24,8 +24,8 @@ echo "Configuring and building Thirdparty/Sophus ..."
 rm -rf build
 mkdir build
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-make -j
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+make -j$(nproc)
 
 cd ../../../
 
@@ -38,7 +38,8 @@ cd ..
 echo "Configuring and building ORB_SLAM3 ..."
 
 rm -rf build
-mkdir build
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-make -j4
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build build -j$(nproc)
+
+# Keep compile_commands.json at workspace root for tools that do not auto-detect build/.
+# ln -sf build/compile_commands.json compile_commands.json

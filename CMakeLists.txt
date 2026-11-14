@@ -1,5 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 project(ORB_SLAM3)
+
+# Generate compile_commands.json for IDE tooling (references, navigation, static analysis).
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
@@ -113,7 +116,9 @@ include/GeometricTools.h
 include/TwoViewReconstruction.h
 include/SerializationUtils.h
 include/Config.h
-include/Settings.h)
+include/Settings.h
+include/StandaloneViewer.h
+src/StandaloneViewer.cc)
 
 add_subdirectory(Thirdparty/g2o)
 
@@ -139,6 +144,11 @@ endif()
 
 
 # Build examples
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Standalone_Viewer)
+
+add_executable(SA_Viewer
+        Standalone_Viewer/saViewer.cc)
+target_link_libraries(SA_Viewer ${PROJECT_NAME})
 
 # RGB-D examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D)
@@ -170,6 +180,10 @@ add_executable(stereo_kitti
         Examples/Stereo/stereo_kitti.cc)
 target_link_libraries(stereo_kitti ${PROJECT_NAME})
 
+add_executable(stereo_quest3
+        Examples/Stereo/stereo_quest3.cc)
+target_link_libraries(stereo_quest3 ${PROJECT_NAME})
+
 add_executable(stereo_euroc
         Examples/Stereo/stereo_euroc.cc)
 target_link_libraries(stereo_euroc ${PROJECT_NAME})
@@ -198,6 +212,14 @@ endif()
 
 #Monocular examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/Monocular)
+
+add_executable(mono_s20fe
+        Examples/Monocular/mono_s20fe.cc)
+target_link_libraries(mono_s20fe ${PROJECT_NAME})
+
+add_executable(mono_quest3
+        Examples/Monocular/mono_quest3.cc)
+target_link_libraries(mono_quest3 ${PROJECT_NAME})
 
 add_executable(mono_tum
         Examples/Monocular/mono_tum.cc)

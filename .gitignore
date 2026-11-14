@@ -7,6 +7,9 @@
 # Unignore all dirs
 !*/
 
+.vscode/
+compile_commands.json
+
 CMakeLists.txt.user
 CMakeLists_modified.txt
 
@@ -55,10 +58,6 @@ Examples/Tests/sophus_test
 Examples/ROS/ORB_SLAM3/CMakeLists.txt.user
 Examples/ROS/ORB_SLAM3/build/
 
-KeyFrameTrajectory.txt
-CameraTrajectory.txt
-kf_*.txt
-f_*.txt
 Thirdparty/DBoW2/build/
 Thirdparty/DBoW2/lib/
 Thirdparty/g2o/build/
@@ -84,10 +83,10 @@ Time*
 Table_Euroc
 Table_TUMVI_rooms/
 *.pyc
-*.osa
 .idea/
 my_settings.txt
 
 borrar/*
 
 */ExecMean.txt
+*.osa
