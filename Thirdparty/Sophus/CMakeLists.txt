@@ -4,6 +4,9 @@ project(Sophus VERSION 1.1.0)
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
+include_directories(/opt/homebrew/include)
+link_directories(/opt/homebrew/lib)
+
 # Release by default
 # Turn on Debug with "-DCMAKE_BUILD_TYPE=Debug"
 if(NOT CMAKE_BUILD_TYPE)
