@@ -416,6 +416,7 @@ void Viewer::Run()
         pangolin::Var<bool> menuShowInertialGraph("menu.Show Inertial Graph",true,true);
         pangolin::Var<int> menuSetCurrentMap("menu.Current Map Index", mpSAViewer->GetCurrentMapIdx(), 0, mpSAViewer->GetNumberOfMaps()-1);
         pangolin::Var<int> menuCurrentMapId("menu.Current Map Id:", mpSAViewer->GetCurrentMap()->GetId());
+        pangolin::Var<int> menuCurrentMapPoints("menu.Map Points:", mpSAViewer->GetCurrentMap()->MapPointsInMap(), pangolin::META_FLAG_READONLY);
         pangolin::Var<bool> menuDeleteSubmap("menu.Delete Submap",false,false);
         pangolin::Var<bool> menuUndoChanges("menu.Undo Changes",false,false);
         pangolin::Var<bool> menuSaveChanges("menu.Save Changes",false,false);
@@ -443,6 +444,7 @@ void Viewer::Run()
             if (menuSetCurrentMap != lastMapIdx) {
                 mpSAViewer->ChangeMap(menuSetCurrentMap);
                 menuCurrentMapId = mpSAViewer->GetCurrentMap()->GetId();
+                menuCurrentMapPoints = mpSAViewer->GetCurrentMap()->MapPointsInMap();
                 lastMapIdx = menuSetCurrentMap;
             }
 
@@ -451,6 +453,7 @@ void Viewer::Run()
                 menuSetCurrentMap.Meta().range[1] = mpSAViewer->GetNumberOfMaps() - 1;
                 menuSetCurrentMap = mpSAViewer->GetCurrentMapIdx();
                 menuCurrentMapId = mpSAViewer->GetCurrentMap()->GetId();
+                menuCurrentMapPoints = mpSAViewer->GetCurrentMap()->MapPointsInMap();
                 lastMapIdx = menuSetCurrentMap;
             }
 
@@ -459,6 +462,7 @@ void Viewer::Run()
                 menuSetCurrentMap.Meta().range[1] = mpSAViewer->GetNumberOfMaps() - 1;
                 menuSetCurrentMap = mpSAViewer->GetCurrentMapIdx();
                 menuCurrentMapId = mpSAViewer->GetCurrentMap()->GetId();
+                menuCurrentMapPoints = mpSAViewer->GetCurrentMap()->MapPointsInMap();
                 lastMapIdx = menuSetCurrentMap;
             }
 
